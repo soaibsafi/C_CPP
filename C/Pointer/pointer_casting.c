@@ -1,24 +1,22 @@
 #include<stdio.h>
 
 int main(){
-    int a; float b;
-    int* ip = &a;
-    float* fp = &b;
+    int a = 1025; // bin: 00000000 00000000 00000100 00000001
+    int *ip = &a; 
 
-    *fp = 4.3;
-    *ip = 7.3;
+    printf("Address: %p, Value: %d\n", ip, *ip);
 
-    //printf("%d\n%d\n", fp, ip);
-    //printf("%f\n%f\n", *fp, *ip);
+    char b;
+    char *cp;
 
-    //ip = fp;
+    cp = (char*)ip;
+    printf("Address: %p, Value: %d\n", cp, *cp); //00000001 = 1
+    printf("Address: %p, Value: %d\n", cp+1, *(cp+1));  // 00000100 = 4
+    printf("Address: %p, Value: %d\n", cp+2, *(cp+2));  // 00000000 = 0
 
-    int x = *ip;
-    printf("%d\n", x);
+    // Void pointer
+    void* vp;
+    vp = ip;
+    printf("Address: %p\n", vp); 
 
-    float y = (float)*ip;
-    printf("%d\n", y);
-
-    float z = *(float*)ip;
-    printf("%d\n", z);
 }
