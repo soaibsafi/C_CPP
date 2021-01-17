@@ -11,6 +11,7 @@ void* loopthread(void* arg){
     for(j = 0; j<thrarg->rows; j++)
         for(k = 0; k<thrarg->cols; k++)
             printf("Loop Iteration %d\t%d\n", j, k);
+    return NULL;
 }
 
 int main(int argc, char** argv){
@@ -25,11 +26,11 @@ int main(int argc, char** argv){
     // Race condition
     pthread_t tid1, tid2;
     thrarg_t thrarg;
+    thrarg.rows = 5;
+    thrarg.cols = 10;
+    pthread_create(&tid1, NULL, loopthread, &thrarg);
     thrarg.rows = 10;
     thrarg.cols = 20;
-    pthread_create(&tid1, NULL, loopthread, &thrarg);
-    thrarg.rows = 20;
-    thrarg.cols = 30;
     pthread_create(&tid2, NULL, loopthread, &thrarg);
 
     //Waiting for the termination of different thread
