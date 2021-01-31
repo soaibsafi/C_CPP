@@ -5,7 +5,7 @@ int cond;
 pthread_cond_t c = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 
-void* thread_1(void* arg)
+void* thread_1(void* arg) //producer
 {
     pthread_mutex_lock(&m);
     cond = 1;
@@ -13,7 +13,7 @@ void* thread_1(void* arg)
     pthread_mutex_unlock(&m);
 }
 
-void* thread_2(void* arg)
+void* thread_2(void* arg)  // Consumer
 {
     pthread_mutex_lock(&m);
     while(!cond){    // while instead of if

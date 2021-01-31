@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
 
 typedef struct _param
@@ -29,21 +30,21 @@ int main(int argc, char **argv)
 {
     pthread_t tid[NUM_THREADS];
     param par[NUM_THREADS];
+    printf("%d\n", atoi(argv[1]));
 
     int intervals = 100000000;
     double pi = 0.0;
 
-    int blocksize = (intervals+NUM_THREADS-1)/NUM_THREADS;  //ceil()
+    int blocksize = (intervals + NUM_THREADS - 1) / NUM_THREADS; //ceil()
     // Create thread
     for (int i = 0; i < NUM_THREADS; i++)
     {
 
-        par[i].lower_bound = i*blocksize;
-        par[i].upper_bound = (i+1)*blocksize-1;
-        if(par[i].upper_bound > intervals) par[i].upper_bound = intervals;
+        par[i].lower_bound = i * blocksize;
+        par[i].upper_bound = (i + 1) * blocksize - 1;
+        if (par[i].upper_bound > intervals)
+            par[i].upper_bound = intervals;
         par[i].delta = 1.0 / (double)intervals;
-
-
 
         pthread_create(&tid[i], NULL, thread_func, &par[i]);
     }

@@ -1,6 +1,6 @@
 #include <pthread.h>
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 #define NUM_PHIL 10
 
@@ -21,9 +21,17 @@ void *philosopher(void *argc)
 
         // Solution 2 to avoid deadlock  (more faster)
         int first;
-        int second; 
-        if (id%2 == 0){first = left; second = right;}
-        else{first = right; second = left;}
+        int second;
+        if (id % 2 == 0)
+        {
+            first = left;
+            second = right;
+        }
+        else
+        {
+            first = right;
+            second = left;
+        }
 
         /* Lock the first fork */
         pthread_mutex_lock(&fork_locks[first]);
