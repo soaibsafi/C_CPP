@@ -44,6 +44,8 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "Customer Biling System.C": "cpp"
+        "Customer Biling System.C": "cpp",
+        "stdio.h": "c",
+        "pthread.h": "c"
     }
 }

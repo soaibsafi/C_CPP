@@ -10,10 +10,11 @@ void write_out_val(float);
 
 __global__ void scal_prod(float *a, float *b, float *c)
 {
-    int part_res = 0.0; // local == register
-    __shared__ float part_prod[threadsPerBlock];
+    // maxT
+    int part_res = 0.0;                          // local == register
+    __shared__ float part_prod[threadsPerBlock]; // local thread
 
-    int tid = threadIdx.x + blockIdx.x * blockDim.x;
+    int tid = threadIdx.x + blockIdx.x * blockDim.x; // global thread
 
     for (int i = tid; i < N; i += blockDim.x * gridDim.x)
     {
